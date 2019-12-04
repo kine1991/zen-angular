@@ -5,7 +5,7 @@ import { tap, switchMap, map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Observable, from, of } from 'rxjs';
+import { Observable, from, of, Subject } from 'rxjs';
 // import { from } from 'rxjs';
 
 
@@ -32,7 +32,8 @@ export interface User {
 })
 export class AuthService {
 
-  user$
+  user$;
+  authChange = new Subject<boolean>();
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -60,18 +61,21 @@ export class AuthService {
   }
 
   autoLogin(){
-    this.user$ =  this.afAuth.authState.pipe(
+    return this.user$ =  this.afAuth.authState.pipe(
       map(userData => {
         if(userData){
           const {uid, email, displayName, phoneNumber, photoURL} = userData
           console.log(userData)
+          this.authChange.next(true);
           return {uid, email, displayName, phoneNumber, photoURL};
         } else{
           console.log('null')
-          of(null);
+          this.authChange.next(false);
+          return of(null);
         }
       })
     )
+    // return 
   }
 
 }

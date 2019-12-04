@@ -1,0 +1,10 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <div class="logo" [routerLink]="['/']">Kron Zen</div>
+    <div class="link" class="example-spacer"></div>
+    <div class="link" *ngIf="isAuth" exact [routerLink]="['/sign-in']" routerLinkActive="router-link-active">Plus</div>
+    <div class="link" *ngIf="!isAuth" exact [routerLink]="['/sign-in']" routerLinkActive="router-link-active">Sign In</div>
+    <div class="link" *ngIf="!isAuth" [routerLink]="['/sign-up']" routerLinkActive="router-link-active">Sign Up</div>
+    <div class="link" *ngIf="isAuth" (click)="logOut()" mat-button>Logout</div>
+  </mat-toolbar-row>
+</mat-toolbar>
