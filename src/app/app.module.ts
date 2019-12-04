@@ -8,6 +8,9 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { HomeComponent } from './home/home/home.component';
 import { ArticlesComponent } from './article/articles/articles.component';
+import { SharedModule } from './shared/shared.module';
+import { AngularMaterialModule } from './angular-material.module';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { ArticlesComponent } from './article/articles/articles.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule,
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

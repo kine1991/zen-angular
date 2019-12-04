@@ -1,9 +1,14 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+// import { api_key } from './api_key';
+import { firebaseConfig } from './firebaseConfig';
 
 export const environment = {
-  production: false
+  production: false,
+  // urlSignIn: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+api_key,
+  // urlSignUp: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+api_key,
+  firebaseConfig: firebaseConfig
 };
 
 /*
