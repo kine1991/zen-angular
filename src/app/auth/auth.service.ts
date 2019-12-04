@@ -33,7 +33,8 @@ export interface User {
 export class AuthService {
 
   user$;
-  authChange = new Subject<boolean>();
+  authChange$ = new Subject<boolean>();
+  userData$ = new Subject<any>();
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -65,12 +66,14 @@ export class AuthService {
       map(userData => {
         if(userData){
           const {uid, email, displayName, phoneNumber, photoURL} = userData
-          console.log(userData)
-          this.authChange.next(true);
+          // console.log(userData)
+          this.authChange$.next(true);
+          this.userData$.next({uid, email, displayName, phoneNumber, photoURL})
           return {uid, email, displayName, phoneNumber, photoURL};
         } else{
           console.log('null')
-          this.authChange.next(false);
+          this.authChange$.next(false);
+          this.userData$.next(null)
           return of(null);
         }
       })

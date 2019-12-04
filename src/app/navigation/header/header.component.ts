@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.authChange.subscribe(isAuth => {
+    this.authService.authChange$.subscribe(isAuth => {
       this.isAuth = isAuth;
     })
   }

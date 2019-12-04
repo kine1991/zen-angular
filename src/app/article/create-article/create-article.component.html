@@ -1,0 +1,17 @@
+<mat-card class="create-article-container">
+    <h1>Create Article</h1>
+
+    <form [formGroup]="form" (ngSubmit)="createArticle()" class="form-container">
+        <mat-form-field>
+            <input matInput placeholder="Enter your title" formControlName="title" required>
+            <!-- <mat-error *ngIf="form.get('title').invalid && form.get('title').touched">{{getErrorMessageForTitle()}}</mat-error> -->
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Enter your body" formControlName="body" type="body">
+            <!-- <mat-error *ngIf="form.get('body').invalid && form.get('body').touched">{{getErrorMessageForBody()}}</mat-error> -->
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="primary" >Create</button>        
+        <!-- <button type="submit" [disabled]="form.invalid || submitted" mat-raised-button color="primary" >Create</button>         -->
+    </form>
+</mat-card>

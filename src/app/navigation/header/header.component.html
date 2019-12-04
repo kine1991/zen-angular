@@ -2,7 +2,11 @@
   <mat-toolbar-row>
     <div class="logo" [routerLink]="['/']">Kron Zen</div>
     <div class="link" class="example-spacer"></div>
-    <div class="link" *ngIf="isAuth" exact [routerLink]="['/sign-in']" routerLinkActive="router-link-active">Plus</div>
+        <!-- <mat-icon>playlist_add</mat-icon> -->
+        <!-- <mat-icon>queue</mat-icon> -->
+    <!-- <div class="link" *ngIf="isAuth" exact [routerLink]="['/create-article']" routerLinkActive="router-link-active">Create Article</div> -->
+    <div class="link" *ngIf="isAuth" exact [routerLink]="['/articles']" routerLinkActive="router-link-active">Articles</div>
+    <div class="link" *ngIf="isAuth" exact [routerLink]="['/create-article']" routerLinkActive="router-link-active"><mat-icon>add</mat-icon></div>
     <div class="link" *ngIf="!isAuth" exact [routerLink]="['/sign-in']" routerLinkActive="router-link-active">Sign In</div>
     <div class="link" *ngIf="!isAuth" [routerLink]="['/sign-up']" routerLinkActive="router-link-active">Sign Up</div>
     <div class="link" *ngIf="isAuth" (click)="logOut()" mat-button>Logout</div>

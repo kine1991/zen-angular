@@ -12,6 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { AngularMaterialModule } from './angular-material.module';
 import { QuillModule } from 'ngx-quill';
 import { HeaderComponent } from './navigation/header/header.component';
+import { CreateArticleComponent } from './article/create-article/create-article.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HeaderComponent } from './navigation/header/header.component';
     SignUpComponent,
     HomeComponent,
     ArticlesComponent,
-    HeaderComponent
+    HeaderComponent,
+    CreateArticleComponent
   ],
   imports: [
     BrowserModule,
