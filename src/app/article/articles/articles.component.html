@@ -1,1 +1,8 @@
-<p>articles works!</p>
+<div class="articles-container">
+    <div class="article" *ngFor="let article of articles">
+        <h1>{{article.title}}</h1>
+        <h2>{{article.autor}}</h2>
+        <quill-view [content]="article.body" format="text" theme="snow"></quill-view>
+
+    </div>
+</div>

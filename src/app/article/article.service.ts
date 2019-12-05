@@ -21,4 +21,9 @@ export class ArticleService {
       uid
     }))
   }
+
+  getArticles(){
+    return from(this.afStore.collection('articles').valueChanges())
+    
+  }
 }

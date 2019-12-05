@@ -2,6 +2,9 @@
     max-width: 960px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto auto;
 }
 
 .form-container{
@@ -10,3 +13,18 @@
     flex-direction: column;
 }
 
+// quill-editor{
+//     min-height: 300px;
+// }
+
+// .quill{
+//     min-height: 240px;
+// }
+
+.ql-container {
+    height: 300px;
+  }
+
+  :host #discipline-qe .ql-container{
+    height: 250px;
+  }

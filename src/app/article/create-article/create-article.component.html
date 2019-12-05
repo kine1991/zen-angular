@@ -6,10 +6,10 @@
             <input matInput placeholder="Enter your title" formControlName="title" required>
             <!-- <mat-error *ngIf="form.get('title').invalid && form.get('title').touched">{{getErrorMessageForTitle()}}</mat-error> -->
         </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Enter your body" formControlName="body" type="body">
-            <!-- <mat-error *ngIf="form.get('body').invalid && form.get('body').touched">{{getErrorMessageForBody()}}</mat-error> -->
-        </mat-form-field>
+        
+        <div class="quill">
+            <quill-editor [style]="{'height':'320px'}" formControlName="body"></quill-editor>
+        </div>
 
         <button type="submit" mat-raised-button color="primary" >Create</button>        
         <!-- <button type="submit" [disabled]="form.invalid || submitted" mat-raised-button color="primary" >Create</button>         -->

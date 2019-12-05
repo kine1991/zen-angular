@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ArticleService } from '../article.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-article',
@@ -15,6 +16,7 @@ export class CreateArticleComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private articleService: ArticleService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -34,7 +36,9 @@ export class CreateArticleComponent implements OnInit {
     // console.log(title, body, this.userData.uid)
     this.articleService.createArticle(title, body, this.userData.uid)
     .subscribe(articleData => {
-      console.log('articleData', articleData)
+      this.form.reset();
+      this.router.navigate(['articles'])
+      // console.log('articleData', articleData)
     })
   }
 
