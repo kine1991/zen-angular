@@ -5,6 +5,7 @@ import { ArticlesComponent } from './article/articles/articles.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { CreateArticleComponent } from './article/create-article/create-article.component';
+import { ArticleComponent } from './article/article/article.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'create-article', component: CreateArticleComponent},
   {path: 'articles', component: ArticlesComponent},
+  {path: 'articles/:articleId', component: ArticleComponent},
 ];
 
 @NgModule({

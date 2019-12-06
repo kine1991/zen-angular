@@ -15,6 +15,7 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { CreateArticleComponent } from './article/create-article/create-article.component';
 import { HtmlToPlainTextDirective } from './article/directives/html-to-plain-text.directive';
 import { TransformHtmlPipe } from './article/pipes/transform-html.pipe';
+import { ArticleComponent } from './article/article/article.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TransformHtmlPipe } from './article/pipes/transform-html.pipe';
     CreateArticleComponent,
     HtmlToPlainTextDirective,
     TransformHtmlPipe,
+    ArticleComponent,
   ],
   imports: [
     BrowserModule,

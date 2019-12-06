@@ -1,13 +1,38 @@
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Personal data
+            </mat-panel-title>
+            <mat-panel-description>
+                Type your name and age
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Self aware panel
+            </mat-panel-title>
+            <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+</mat-accordion>
+
+
 <div class="articles-container">
     <div class="article" *ngFor="let article of articles">
         <h1>{{article.title}}</h1>
         <h2>{{article.autor}}</h2>
-        <p>{{article.body | transformHtml:300:true}}</p>
-
+        <p>{{article.body | transformHtml:500:true}}</p>
         <!-- <quill-view [content]="article.body" format="text" theme="snow"></quill-view> -->
-
-
         <!-- <quill-view [innerHTML]="article.body"  format="text" theme="snow"></quill-view> -->
+        <div class="button">
+            <button [routerLink]="['/articles', article.id]" routerLinkActive="router-link-active"  mat-button>Open</button>
 
+        </div>
     </div>
 </div>

@@ -9,15 +9,17 @@ import { ArticleService } from '../article.service';
 export class ArticlesComponent implements OnInit {
 
   articles;
-
+  panelOpenState = false;
+  
   constructor(
     private articleService: ArticleService
   ) { }
 
   ngOnInit() {
     this.articleService.getArticles()
-    .subscribe(val => {
-      this.articles = val
+    .subscribe(data => {
+      // console.log(data)
+      this.articles = data
     })
   }
 

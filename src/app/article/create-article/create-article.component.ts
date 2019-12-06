@@ -41,5 +41,4 @@ export class CreateArticleComponent implements OnInit {
       // console.log('articleData', articleData)
     })
   }
-
 }
