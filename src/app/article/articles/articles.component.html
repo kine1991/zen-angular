@@ -2,7 +2,12 @@
     <div class="article" *ngFor="let article of articles">
         <h1>{{article.title}}</h1>
         <h2>{{article.autor}}</h2>
-        <quill-view [content]="article.body" format="text" theme="snow"></quill-view>
+        <p>{{article.body | transformHtml:300:true}}</p>
+
+        <!-- <quill-view [content]="article.body" format="text" theme="snow"></quill-view> -->
+
+
+        <!-- <quill-view [innerHTML]="article.body"  format="text" theme="snow"></quill-view> -->
 
     </div>
 </div>

@@ -10,9 +10,11 @@ import { HomeComponent } from './home/home/home.component';
 import { ArticlesComponent } from './article/articles/articles.component';
 import { SharedModule } from './shared/shared.module';
 import { AngularMaterialModule } from './angular-material.module';
-import { QuillModule } from 'ngx-quill';
+// import { QuillModule } from 'ngx-quill';
 import { HeaderComponent } from './navigation/header/header.component';
 import { CreateArticleComponent } from './article/create-article/create-article.component';
+import { HtmlToPlainTextDirective } from './article/directives/html-to-plain-text.directive';
+import { TransformHtmlPipe } from './article/pipes/transform-html.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { CreateArticleComponent } from './article/create-article/create-article.
     HomeComponent,
     ArticlesComponent,
     HeaderComponent,
-    CreateArticleComponent
+    CreateArticleComponent,
+    HtmlToPlainTextDirective,
+    TransformHtmlPipe,
   ],
   imports: [
     BrowserModule,
