@@ -10,7 +10,8 @@ export class ArticlesComponent implements OnInit {
 
   articles;
   panelOpenState = false;
-  
+  search_field
+
   constructor(
     private articleService: ArticleService
   ) { }
@@ -23,4 +24,7 @@ export class ArticlesComponent implements OnInit {
     })
   }
 
+  ChangeText(){
+    console.log('ChangeText()')
+  }
 }
