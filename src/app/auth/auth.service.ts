@@ -39,7 +39,7 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afStore: AngularFirestore,
-    private router: Router
+    // private router: Router
   ) { }
 
   signIn(email: string, password: string){
@@ -64,6 +64,7 @@ export class AuthService {
   autoLogin(){
     return this.user$ =  this.afAuth.authState.pipe(
       map(userData => {
+        console.log('authService', userData)
         if(userData){
           const {uid, email, displayName, phoneNumber, photoURL} = userData
           // console.log(userData)
@@ -78,7 +79,6 @@ export class AuthService {
         }
       })
     )
-    // return 
   }
 
 }

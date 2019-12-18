@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { from } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { from, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,11 @@ export class ArticleService {
     private router: Router
   ) { }
 
-  createArticle(title: string, body: string, uid: string) {
+  createArticle(title: string, body: string, user: object) {
     return from(this.afStore.collection('articles').add({
       title,
       body,
-      uid,
+      user,
       date: Date.now()
     }))
   }
@@ -34,6 +34,11 @@ export class ArticleService {
         return articles;
       })
     )
+  }
+
+  getArticlesWithQuery(params){
+    console.log('params', params)
+    return of(5)
   }
 
   getArticle(articleId){

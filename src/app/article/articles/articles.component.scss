@@ -23,6 +23,9 @@
     text-align: end;
 }
 
-// quill-view{
-//     font-size: 1.6rem;
-// }
+.loading-container{
+    height: calc(100vh - 64px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

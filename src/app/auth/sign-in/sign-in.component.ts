@@ -52,7 +52,7 @@ export class SignInComponent implements OnInit {
     this.authService.signIn(email, password) 
     .subscribe(res => {
       console.log(res)
-      // this.router.navigate(['/']);
+      this.router.navigate(['/']);
     })
   }
 }

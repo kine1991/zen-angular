@@ -20,21 +20,23 @@ export class CreateArticleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('createArticle')
     this.form = new FormGroup({
       title: new FormControl(''),
       body: new FormControl(''),
     });
 
+    this.authService.autoLogin()
     this.authService.userData$.subscribe(userData => {
-      // console.log(userData)
+      console.log('userData', userData)
       this.userData = userData;
     })
   }
 
   createArticle(){
     const {title, body} = this.form.value;
-    // console.log(title, body, this.userData.uid)
-    this.articleService.createArticle(title, body, this.userData.uid)
+    console.log(title, body, this.userData)
+    this.articleService.createArticle(title, body, this.userData)
     .subscribe(articleData => {
       this.form.reset();
       this.router.navigate(['articles'])

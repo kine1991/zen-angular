@@ -1,30 +1,39 @@
-<!-- <mat-accordion>
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Personal data
-            </mat-panel-title>
-            <mat-panel-description>
-                Type your name and age
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-    </mat-expansion-panel>
-</mat-accordion> -->
+<div class="articles-container" *ngIf="articles; else loading">
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Personal data
+                </mat-panel-title>
+                <mat-panel-description>
+                    Type your name and age
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+            <input type="text" [(ngModel)]="search_field">
+            <button (click)="search()">Click</button>
+            <a [routerLink]="'/articles'" [queryParams]="{ search: search_field }" >link</a>
+        </mat-expansion-panel>
+    </mat-accordion>
+    
+    
 
-<input type="text" [(ngModel)]="search_field">
-{{search_field}}
 
-
-<div class="articles-container">
     <div class="article" *ngFor="let article of articles">
         <h1>{{article.title}}</h1>
-        <h2>{{article.autor}}</h2>
+        <a class="mat-small" [style.text-decoration]="'underline'">{{article.user.displayName}}</a>
         <p>{{article.body | transformHtml:500:true}}</p>
         <!-- <quill-view [content]="article.body" format="text" theme="snow"></quill-view> -->
         <!-- <quill-view [innerHTML]="article.body"  format="text" theme="snow"></quill-view> -->
         <div class="button">
             <button [routerLink]="['/articles', article.id]" routerLinkActive="router-link-active"  mat-button>Open</button>
-
         </div>
     </div>
 </div>
+
+
+<ng-template #loading>
+    <div class="loading-container">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

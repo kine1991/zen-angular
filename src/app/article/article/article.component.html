@@ -1,12 +1,14 @@
-<div class="article-container" *ngIf="article">
+<div class="article-container" *ngIf="article; else loading">
     <h1 class="title">{{article.title}}</h1>
     <div class="author-and-date">
-        <p class="author">{{article.uid}}</p>
+        <p class="author">{{article.user.displayName}}</p>
         <p class="date">{{date | date}}</p>
     </div>
     <quill-view [content]="article.body" format="text" theme="snow"></quill-view> 
 </div>
 
-
-<!-- <pre>{{article | json}}</pre> -->
-<!-- <pre>{{article.title}}</pre> -->
+<ng-template #loading>
+    <div class="loading-container">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>
