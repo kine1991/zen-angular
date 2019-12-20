@@ -1,14 +1,34 @@
-<mat-toolbar>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" *ngIf="isAuth" [routerLink]="['']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a class="navbar-item" *ngIf="isAuth"  [routerLink]="['/articles']" routerLinkActive="router-link-active">Articles</a>
+      <a class="navbar-item" *ngIf="isAuth"  [routerLink]="['/create-article']" routerLinkActive="router-link-active"><span class="icon"><i class="fas fa-plus" aria-hidden="true"></i></span></a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary" *ngIf="!isAuth" [routerLink]="['/sign-up']" routerLinkActive="router-link-active"><strong>Sign Up</strong></a>
+          <a class="button is-light" *ngIf="!isAuth" exact [routerLink]="['/sign-in']" routerLinkActive="router-link-active">Sign In</a>
+          <a class="button is-primary" *ngIf="isAuth" (click)="logOut()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- <mat-toolbar>
   <mat-toolbar-row>
     <div class="logo" [routerLink]="['/']">Kron Zen</div>
     <div class="link" class="example-spacer"></div>
-        <!-- <mat-icon>playlist_add</mat-icon> -->
-        <!-- <mat-icon>queue</mat-icon> -->
-    <!-- <div class="link" *ngIf="isAuth" exact [routerLink]="['/create-article']" routerLinkActive="router-link-active">Create Article</div> -->
     <div class="link" *ngIf="isAuth" exact [routerLink]="['/articles']" routerLinkActive="router-link-active">Articles</div>
     <div class="link" *ngIf="isAuth" exact [routerLink]="['/create-article']" routerLinkActive="router-link-active"><mat-icon>add</mat-icon></div>
     <div class="link" *ngIf="!isAuth" exact [routerLink]="['/sign-in']" routerLinkActive="router-link-active">Sign In</div>
     <div class="link" *ngIf="!isAuth" [routerLink]="['/sign-up']" routerLinkActive="router-link-active">Sign Up</div>
     <div class="link" *ngIf="isAuth" (click)="logOut()" mat-button>Logout</div>
   </mat-toolbar-row>
-</mat-toolbar>
+</mat-toolbar> -->
+
