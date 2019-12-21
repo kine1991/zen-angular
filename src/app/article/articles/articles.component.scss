@@ -1,17 +1,10 @@
 .articles-container{
     max-width: 860px;
     margin: auto auto;
-
-    font-size: 1.6rem;
-
 }
 
 .article{
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-end;
-
-    border: 1px solid black;
+    // border: 1px solid black;
     border-radius: 4px;
     margin: 2rem 0rem;
     padding: 1rem;
@@ -19,9 +12,9 @@
     box-shadow: 10px 5px 5px gray;
 }
 
-.button{
-    text-align: end;
-}
+// .button{
+//     text-align: end;
+// }
 
 .loading-container{
     height: calc(100vh - 64px);

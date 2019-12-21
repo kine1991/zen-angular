@@ -24,8 +24,8 @@ export class CreateArticleComponent implements OnInit {
   ngOnInit() {
     // this.user$ = 
     this.authService.user$.subscribe(userData => {
-      console.log('userData', userData)
-      // this.userData = userData
+      // console.log('userData', userData)
+      this.userData = userData
     })
     // this.route.paramMap.subscribe((paramMap: ParamMap) => {
     //   console.log('@@@')
@@ -53,13 +53,17 @@ export class CreateArticleComponent implements OnInit {
   }
 
   createArticle(){
-    // const {title, body} = this.form.value;
+    const {title, body} = this.form.value;
     // console.log(title, body, this.userData)
-    // this.articleService.createArticle(title, body, this.userData)
-    // .subscribe(articleData => {
-    //   this.form.reset();
-    //   this.router.navigate(['articles'])
-    //   // console.log('articleData', articleData)
-    // })
+    // If not authenticated
+    if(!this.userData.uid){
+      alert('You are not logged')
+    }
+    this.articleService.createArticle(title, body, this.userData)
+    .subscribe(articleData => {
+      this.form.reset();
+      this.router.navigate(['articles'])
+      // console.log('articleData', articleData)
+    })
   }
 }

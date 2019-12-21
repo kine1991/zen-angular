@@ -1,4 +1,46 @@
 <div class="articles-container" *ngIf="articles; else loading">
+    <div class="box" *ngFor="let article of articles">
+        <article class="media">
+            <div class="media-left" *ngIf="article.user.photoURL">
+                <figure class="image is-64x64"><img src={{article.user.photoURL}} alt="Image"></figure>
+            </div>
+            <div class="media-content">
+                <div class="content">
+                    <div>
+                        <strong>{{article.title}} </strong> <small>{{article.user.displayName}} </small> <small>{{article.date | date:'dd.mm.yyyy'}}</small><br>
+                        <p>{{article.body | transformHtml:500:true}}</p>
+                    </div>
+                </div>
+                <nav class="level is-mobile">
+                    <div class="level-left">
+                        <button [routerLink]="['/articles', article.id]" class="button is-small m-r-sm">
+                            <span class="icon"><i class="fas fa-book-open"></i></span>
+                            <span>Open</span>
+                        </button>
+                        <a class="level-item" aria-label="like">
+                            <span class="icon"><i class="fas fa-heart" aria-hidden="true"></i></span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </article>
+    </div>
+</div>
+
+
+<ng-template #loading>
+    <!-- <div class="loading-container">
+        <mat-spinner></mat-spinner>
+    </div> -->
+    <div class="loader-wrapper loading-container">
+        <div class="loader is-loading"></div>
+    </div>
+</ng-template>
+
+
+
+
+<!-- <div class="articles-container" *ngIf="articles; else loading">
     <mat-accordion>
         <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -23,8 +65,8 @@
         <h1>{{article.title}}</h1>
         <a class="mat-small" [style.text-decoration]="'underline'">{{article.user.displayName}}</a>
         <p>{{article.body | transformHtml:500:true}}</p>
-        <!-- <quill-view [content]="article.body" format="text" theme="snow"></quill-view> -->
-        <!-- <quill-view [innerHTML]="article.body"  format="text" theme="snow"></quill-view> -->
+        <quill-view [content]="article.body" format="text" theme="snow"></quill-view>
+        <quill-view [innerHTML]="article.body"  format="text" theme="snow"></quill-view>
         <div class="button">
             <button [routerLink]="['/articles', article.id]" routerLinkActive="router-link-active"  mat-button>Open</button>
         </div>
@@ -36,4 +78,4 @@
     <div class="loading-container">
         <mat-spinner></mat-spinner>
     </div>
-</ng-template>
+</ng-template> -->

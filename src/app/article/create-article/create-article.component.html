@@ -2,6 +2,8 @@
     <h1>Create Article</h1>
 
     <!-- {{user$ | async | json}} -->
+    <!-- <p *ngIf="userData">{{userData.uid}}</p> -->
+    
 
     <form [formGroup]="form" (ngSubmit)="createArticle()" class="form-container">
         <mat-form-field>
