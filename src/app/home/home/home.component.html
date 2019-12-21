@@ -1,6 +1,11 @@
 <p>home works!</p>
 
-<button mat-raised-button color="primary" (click)="logOut()">logOut</button>
+<button mat-raised-button color="secondary" (click)="signInWithGoogle()">Sign In With Google</button>
+<!-- <button mat-raised-button color="primary" (click)="logOut()">logOut</button> -->
 
 
-{{user$ | async | json}}
+<!-- <p *ngIf="userData">{{userData | json}}</p> -->
+<!-- {{user$ | async | json}} -->
+<!-- {{userData.uid}} -->
+
+<pre>{{user$ | async | json}}</pre>

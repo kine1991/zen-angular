@@ -55,4 +55,8 @@ export class SignInComponent implements OnInit {
       this.router.navigate(['/']);
     })
   }
+
+  signInWithGoogle(){
+    this.authService.signInWithGoogle()
+  }
 }

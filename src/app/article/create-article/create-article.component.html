@@ -1,6 +1,8 @@
 <mat-card class="create-article-container">
     <h1>Create Article</h1>
 
+    <!-- {{user$ | async | json}} -->
+
     <form [formGroup]="form" (ngSubmit)="createArticle()" class="form-container">
         <mat-form-field>
             <input matInput placeholder="Enter your title" formControlName="title" required>

@@ -8,17 +8,24 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class HomeComponent implements OnInit {
   user$
+  userData
 
   constructor(
     private authService: AuthService
   ) { }
 
   ngOnInit() {
-    this.user$ = this.authService.user$
+    this.user$ = this.authService.user$;
+    // this.userData = this.authService.userData$.subscribe(userData => {
+    //   console.log('home ', userData)
+    //   this.userData = userData
+    // })
   }
 
-  logOut(){
-    this.authService.logOut()
-  }
+
+
+  // logOut(){
+  //   this.authService.logOut()
+  // }
 
 }

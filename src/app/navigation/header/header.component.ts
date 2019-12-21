@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   @ViewChild('navBurger', {static: false}) navBurger: ElementRef;
 
   isAuth;
+  isFetching = false;
 
   constructor(
     private authService: AuthService,
@@ -20,8 +21,18 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.authChange$.subscribe(isAuth => {
-      this.isAuth = isAuth;
+    this.isFetching = true;
+    this.authService.user$.subscribe(userData => {
+      if(userData){
+        this.isAuth = true;
+        this.isFetching = false;
+      } else{
+        this.isAuth = false;
+        this.isFetching = false;
+      }
+    }, error => {
+      this.isAuth = false;
+      this.isFetching = false;
     })
   }
 

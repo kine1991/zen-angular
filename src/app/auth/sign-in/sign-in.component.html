@@ -12,6 +12,10 @@
             <mat-error *ngIf="form.get('password').invalid && form.get('password').touched">{{getErrorMessageForPassword()}}</mat-error>
         </mat-form-field>
 
-        <button type="submit" [disabled]="form.invalid || submitted" mat-raised-button color="primary" >Sign In</button>        
+        <button type="submit" [disabled]="form.invalid || submitted" class="button is-primary m-b-md">Sign In</button>        
+        <button type="button" (click)="signInWithGoogle()" class="button is-danger">
+            <span class="icon"><i class="fab fa-google"></i></span>
+              <span>Sign In With Google</span>
+        </button>
     </form>
 </mat-card>
