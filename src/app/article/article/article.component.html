@@ -1,10 +1,18 @@
 <div class="article-container" *ngIf="article; else loading">
-    <h1 class="title">{{article.title}}</h1>
-    <div class="author-and-date">
-        <p class="author">{{article.user.displayName}}</p>
-        <p class="date">{{date | date}}</p>
+    <button class="button is-light" [routerLink]="['/articles']">
+        <span class="icon is-small"><i class="fas fa-arrow-left"></i></span> 
+        <span>  Back </span>
+    </button>
+
+    <h1 class="title is-size-2" [style.textAlign]="'center'">{{article.title}}</h1>
+    <div class="author-and-date is-size-7 m-b-sm">
+        <p class="author m-r-lg has-text-link"  >{{article.user.displayName}}</p>
+        <p class="date has-text-grey">{{date | date:"hh:mm  dd-MM-yyy"}}</p>
     </div>
-    <quill-view [content]="article.body" format="text" theme="snow"></quill-view> 
+    <!-- <div [innerHTML]="article.body"></div> -->
+    <p class="is-size-4" [innerHtml]="article.body"></p>
+    <!-- <p class="is-size-2" [innerHtml]="'<div style="color: red"> <b>This is my HTML.</b></div>'"></p> -->
+    <!-- <quill-view class="is-size-1" [content]="article.body" format="text" theme="snow"></quill-view>  -->
 </div>
 
 <ng-template #loading>

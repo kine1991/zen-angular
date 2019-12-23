@@ -1,16 +1,24 @@
 .article-container{
-    max-width: 860px;
+    max-width: 760px;
     margin: auto;
 }
 
 .author-and-date{
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
-    font-size: 12px;
-    padding: 0 1rem;
-    box-shadow: 2px 1px 1px rgb(228, 225, 225);
+    // font-size: 12px;
+    // padding: 0 1rem;
+    // box-shadow: 2px 1px 1px rgb(228, 225, 225);
+
     // background: rgb(156, 152, 152);
+}
+
+.author {
+    text-decoration: underline;
+    // color: darkblue; 
+    cursor: pointer;
+    // color: cornflowerblue; 
 }
 
 .loading-container{

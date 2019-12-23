@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ArticleService } from '../article.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
@@ -6,7 +6,8 @@ import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss']
+  styleUrls: ['./article.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ArticleComponent implements OnInit {
   article
