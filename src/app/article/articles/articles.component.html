@@ -1,3 +1,6 @@
+<button (click)="openDialog()">Open dialog</button>
+
+
 <div class="articles-container" *ngIf="articles; else loading">
     <div class="box" *ngFor="let article of articles">
         <article class="media">

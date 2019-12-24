@@ -9,10 +9,7 @@
         <p class="author m-r-lg has-text-link"  >{{article.user.displayName}}</p>
         <p class="date has-text-grey">{{date | date:"hh:mm  dd-MM-yyy"}}</p>
     </div>
-    <!-- <div [innerHTML]="article.body"></div> -->
     <p class="is-size-4" [innerHtml]="article.body"></p>
-    <!-- <p class="is-size-2" [innerHtml]="'<div style="color: red"> <b>This is my HTML.</b></div>'"></p> -->
-    <!-- <quill-view class="is-size-1" [content]="article.body" format="text" theme="snow"></quill-view>  -->
 </div>
 
 <ng-template #loading>
@@ -20,3 +17,8 @@
         <mat-spinner></mat-spinner>
     </div>
 </ng-template>
+
+
+<!-- <div [innerHTML]="article.body"></div> -->
+<!-- <p class="is-size-2" [innerHtml]="'<div style="color: red"> <b>This is my HTML.</b></div>'"></p> -->
+<!-- <quill-view class="is-size-1" [content]="article.body" format="text" theme="snow"></quill-view>  -->
