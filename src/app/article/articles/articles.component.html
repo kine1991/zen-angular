@@ -10,7 +10,8 @@
             <div class="media-content">
                 <div class="content">
                     <div>
-                        <strong>{{article.title}} </strong> <small>{{article.user.displayName}} </small> <small>{{article.date | date:'dd.mm.yyyy'}}</small><br>
+                        <small class="author m-r-sm has-text-link">{{article.user.displayName}} </small> <small class="date has-text-grey">{{article.date | date:"hh:mm  dd-MM-yyy"}}</small><br>
+                        <strong>{{article.title}} </strong>
                         <p>{{article.body | transformHtml:500:true}}</p>
                     </div>
                 </div>
@@ -32,12 +33,12 @@
 
 
 <ng-template #loading>
-    <!-- <div class="loading-container">
-        <mat-spinner></mat-spinner>
-    </div> -->
-    <div class="loader-wrapper loading-container">
-        <div class="loader is-loading"></div>
+    <div class="loading-container">
+        <mat-spinner [diameter]="30"></mat-spinner>
     </div>
+    <!-- <div class="loader-wrapper loading-container">
+        <div class="loader is-loading"></div>
+    </div> -->
 </ng-template>
 
 

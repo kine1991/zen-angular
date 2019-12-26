@@ -22,3 +22,13 @@
     justify-content: center;
     align-items: center;
 }
+
+.loading-container ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: black;
+}
+
+
+.author {
+    text-decoration: underline;
+    cursor: pointer;
+}

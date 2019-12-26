@@ -25,6 +25,7 @@
     "@wizishop/ng-wizi-bulma": "^8.0.6",
     "bulma": "^0.8.0",
     "bulma-extensions": "^6.2.7",
+    "faker": "^4.1.0",
     "firebase": "^7.5.0",
     "hammerjs": "^2.0.8",
     "jsonwebtoken": "^8.5.1",

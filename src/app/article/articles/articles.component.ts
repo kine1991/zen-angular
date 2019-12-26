@@ -31,7 +31,7 @@ export class ArticlesComponent implements OnInit {
 
     this.route.queryParamMap.pipe(
       switchMap(params => {
-        console.log(params.get('search'))
+        // console.log(params.get('search'))
         return this.articleService.getArticlesWithQuery(params.get('search'));
       })
     )
@@ -40,11 +40,11 @@ export class ArticlesComponent implements OnInit {
   }
 
   ChangeText(){
-    console.log('ChangeText()')
+    // console.log('ChangeText()')
   }
 
   search(){
-    console.log('search', this.search_field)
+    // console.log('search', this.search_field)
   }
 
 

@@ -3,6 +3,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ArticleService } from '../article.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { SeedService } from 'src/app/shared/seed.service';
+
+
 
 @Component({
   selector: 'app-create-article',
@@ -17,45 +20,26 @@ export class CreateArticleComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private articleService: ArticleService,
+    private seedService: SeedService,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    // this.user$ = 
     this.authService.user$.subscribe(userData => {
       // console.log('userData', userData)
       this.userData = userData
     })
-    // this.route.paramMap.subscribe((paramMap: ParamMap) => {
-    //   console.log('@@@')
-    //   // this.userData = this.authService.userData
-    //   console.log('##', this.userData)
-    //   this.authService.userData$.subscribe(userData => {
-    //     console.log('create article 222', userData)
-    //     // this.userData = userData
-    //   })
 
-    // })
-
-
-    // console.log('createArticle')
     this.form = new FormGroup({
       title: new FormControl(''),
       body: new FormControl(''),
     });
 
-    // this.authService.autoLogin()
-    // this.authService.userData$.subscribe(userData => {
-    //   console.log('userData', userData)
-    //   this.userData = userData;
-    // })
   }
 
   createArticle(){
     const {title, body} = this.form.value;
-    // console.log(title, body, this.userData)
-    // If not authenticated
     if(!this.userData.uid){
       alert('You are not logged')
     }
@@ -63,7 +47,11 @@ export class CreateArticleComponent implements OnInit {
     .subscribe(articleData => {
       this.form.reset();
       this.router.navigate(['articles'])
-      // console.log('articleData', articleData)
     })
+  }
+
+
+  createFakeData() {
+    this.seedService.createFakeData(50, 50) // параметры: максимальное рандомное количество пользователей и статей у каждого из них
   }
 }

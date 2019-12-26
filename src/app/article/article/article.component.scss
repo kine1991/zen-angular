@@ -16,9 +16,7 @@
 
 .author {
     text-decoration: underline;
-    // color: darkblue; 
     cursor: pointer;
-    // color: cornflowerblue; 
 }
 
 .loading-container{
@@ -26,4 +24,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.loading-container ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: black;
 }
