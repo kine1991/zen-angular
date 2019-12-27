@@ -16,7 +16,9 @@ import { CreateArticleComponent } from './article/create-article/create-article.
 import { HtmlToPlainTextDirective } from './article/directives/html-to-plain-text.directive';
 import { TransformHtmlPipe } from './article/pipes/transform-html.pipe';
 import { ArticleComponent } from './article/article/article.component';
-import { DialogComponent } from './article/dialog/dialog.component'
+import { DialogComponent } from './article/dialog/dialog.component';
+import { UserComponent } from './user/user/user.component';
+import { UsersComponent } from './user/users/users.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { DialogComponent } from './article/dialog/dialog.component'
     HtmlToPlainTextDirective,
     TransformHtmlPipe,
     ArticleComponent,
-    DialogComponent
+    DialogComponent,
+    UserComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

@@ -46,7 +46,7 @@ export class SeedService {
             shortBody,
             body,
             date,
-            user: fakeUser,
+            user: {...fakeUser, uid},
           })
           console.log('success')
         }

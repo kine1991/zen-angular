@@ -51,12 +51,15 @@ export class SignInComponent implements OnInit {
     const {email, password} = this.form.value;
     this.authService.signIn(email, password) 
     .subscribe(res => {
-      console.log(res)
-      this.router.navigate(['/']);
+      this.router.navigate(['/articles']);
     })
   }
 
   signInWithGoogle(){
     this.authService.signInWithGoogle()
+    .then(() => {
+      this.router.navigate(['/articles']);
+    })
+    
   }
 }

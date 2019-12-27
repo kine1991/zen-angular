@@ -1,18 +1,33 @@
 <mat-card class="sign-up-page-mat-card">
     <h1>Sign Up</h1>
     <form [formGroup]="form" (ngSubmit)="signUp()" class="sign-up-page-container">
-        <mat-form-field>
-            <input matInput placeholder="Enter your name" formControlName="name" required>
-            <!-- <mat-error *ngIf="form.get('name').invalid && form.get('name').touched">{{getErrorMessageForName()}}</mat-error> -->
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Enter your email" formControlName="email" required>
-            <mat-error *ngIf="form.get('email').invalid && form.get('email').touched">{{getErrorMessageForEmail()}}</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Enter your password" formControlName="password" type="password">
-            <mat-error *ngIf="form.get('password').invalid && form.get('password').touched">{{getErrorMessageForPassword()}}</mat-error>
-        </mat-form-field>
+        <div class="field">
+            <label class="label">Name</label>
+            <div class="control has-icons-left">
+                <input class="input" [class.is-danger]="form.get('name').invalid && form.get('name').touched" type="text"
+                    placeholder="Enter your name" formControlName="name" required>
+                <span class="icon is-small is-left"><i class="fas fas fa-at"></i> </span>
+            </div>
+            <p class="help is-danger" *ngIf="form.get('name').invalid && form.get('name').touched">{{getErrorMessageForName()}}</p>
+        </div>
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control has-icons-left">
+                <input class="input" [class.is-danger]="form.get('email').invalid && form.get('email').touched" type="email"
+                    placeholder="Enter your email" formControlName="email" required>
+                <span class="icon is-small is-left"><i class="fas fas fa-at"></i> </span>
+            </div>
+            <p class="help is-danger" *ngIf="form.get('email').invalid && form.get('email').touched">{{getErrorMessageForEmail()}}</p>
+        </div>
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control has-icons-left">
+                <input class="input" [class.is-danger]="form.get('password').invalid && form.get('password').touched"
+                    type="password" placeholder="Enter your password" formControlName="password" required>
+                <span class="icon is-small is-left"><i class="fas fa-key"></i> </span>
+            </div>
+            <p class="help is-danger" *ngIf="form.get('password').invalid && form.get('password').touched">{{getErrorMessageForPassword()}}</p>
+        </div>
 
         <button type="submit" [disabled]="form.invalid || submitted" class="button is-primary m-b-md" >Sign Up</button>   
         <button type="button" (click)="signInWithGoogle()" class="button is-danger">
@@ -23,3 +38,18 @@
     </form>
     
 </mat-card>
+
+
+
+<!-- <mat-form-field>
+    <input matInput placeholder="Enter your name" formControlName="name" required>
+    <mat-error *ngIf="form.get('name').invalid && form.get('name').touched">{{getErrorMessageForName()}}</mat-error>
+</mat-form-field>
+<mat-form-field>
+    <input matInput placeholder="Enter your email" formControlName="email" required>
+    <mat-error *ngIf="form.get('email').invalid && form.get('email').touched">{{getErrorMessageForEmail()}}</mat-error>
+</mat-form-field>
+<mat-form-field>
+    <input matInput placeholder="Enter your password" formControlName="password" type="password">
+    <mat-error *ngIf="form.get('password').invalid && form.get('password').touched">{{getErrorMessageForPassword()}}</mat-error>
+</mat-form-field> -->

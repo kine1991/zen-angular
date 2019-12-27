@@ -52,6 +52,6 @@ export class CreateArticleComponent implements OnInit {
 
 
   createFakeData() {
-    this.seedService.createFakeData(50, 50) // параметры: максимальное рандомное количество пользователей и статей у каждого из них
+    this.seedService.createFakeData(5, 15) // параметры: максимальное рандомное количество пользователей и статей у каждого из них
   }
 }

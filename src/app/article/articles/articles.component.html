@@ -10,7 +10,7 @@
             <div class="media-content">
                 <div class="content">
                     <div>
-                        <small class="author m-r-sm has-text-link">{{article.user.displayName}} </small> <small class="date has-text-grey">{{article.date | date:"hh:mm  dd-MM-yyy"}}</small><br>
+                        <small class="author m-r-sm has-text-link" [routerLink]="['/users', article.user.uid]" routerLinkActive="router-link-active" >{{article.user.displayName}} </small> <small class="date has-text-grey">{{article.date | date:"hh:mm  dd-MM-yyy"}}</small><br>
                         <strong>{{article.title}} </strong>
                         <p>{{article.body | transformHtml:500:true}}</p>
                     </div>

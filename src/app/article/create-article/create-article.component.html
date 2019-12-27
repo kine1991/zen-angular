@@ -1,14 +1,73 @@
 <mat-card class="create-article-container">
     <h1>Create Article</h1>
+    <form [formGroup]="form" (ngSubmit)="createArticle()" class="form-container">
+        <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Title input">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Body</label>
+            <div class="control">
+                <textarea class="textarea" placeholder="Textarea"></textarea>
+            </div>
+        </div>
 
-    <!-- {{user$ | async | json}} -->
-    <!-- <p *ngIf="userData">{{userData.uid}}</p> -->
-    
+        <!-- <mat-form-field>
+            <input matInput placeholder="Enter your title" formControlName="title" required>
+            <mat-error *ngIf="form.get('title').invalid && form.get('title').touched">{{getErrorMessageForTitle()}}</mat-error>
+        </mat-form-field>
+        <div class="quill">
+            <quill-editor [style]="{'height':'320px'}" formControlName="body"></quill-editor>
+        </div> -->
 
+        <button type="submit" class="button is-info m-b-md">Create</button>        
+        <button (click)="createFakeData()" type="button" class="button">createFakeData()</button>        
+    </form>
+</mat-card>
+
+
+<!-- 
+<div class="field">
+    <label class="label">Message</label>
+    <div class="control">
+      <textarea class="textarea" placeholder="Textarea"></textarea>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <label class="checkbox">
+        <input type="checkbox">
+        I agree to the <a href="#">terms and conditions</a>
+      </label>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <label class="radio">
+        <input type="radio" name="question">
+        Yes
+      </label>
+      <label class="radio">
+        <input type="radio" name="question">
+        No
+      </label>
+    </div>
+  </div> -->
+
+
+
+
+
+<!-- <mat-card class="create-article-container">
+    <h1>Create Article</h1>
     <form [formGroup]="form" (ngSubmit)="createArticle()" class="form-container">
         <mat-form-field>
             <input matInput placeholder="Enter your title" formControlName="title" required>
-            <!-- <mat-error *ngIf="form.get('title').invalid && form.get('title').touched">{{getErrorMessageForTitle()}}</mat-error> -->
+            <mat-error *ngIf="form.get('title').invalid && form.get('title').touched">{{getErrorMessageForTitle()}}</mat-error>
         </mat-form-field>
         
         <div class="quill">
@@ -19,5 +78,4 @@
         <button type="submit" mat-raised-button color="primary" >Create</button>        
         <button (click)="createFakeData()" type="button" mat-raised-button color="primary" >createFakeData()</button>        
     </form>
-</mat-card>
-
+</mat-card> -->

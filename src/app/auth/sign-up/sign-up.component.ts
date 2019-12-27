@@ -53,13 +53,15 @@ export class SignUpComponent implements OnInit {
     const {email, password, name} = this.form.value;  
     this.authService.signUp(email, password, name)
     .subscribe(res => {
-      console.log(res)
-      this.router.navigate(['/']);
+      this.router.navigate(['/articles']);
     })
   }
 
   signInWithGoogle(){
     this.authService.signInWithGoogle()
+    .then(() => {
+      this.router.navigate(['/articles']);
+    })
   }
 
 }

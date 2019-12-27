@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "kron-zenn"
+    "default": "kron-zenn",
+    "kron--zenn": "kron-zenn"
   }
 }

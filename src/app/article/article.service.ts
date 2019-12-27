@@ -25,7 +25,7 @@ export class ArticleService {
   }
 
   getArticles(){
-    return from(this.afStore.collection('articles').get()).pipe(
+    return this.afStore.collection('articles').get().pipe(
       map(querySnapshot => {
         const articles = []
         querySnapshot.docs.forEach(doc => {
