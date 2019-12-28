@@ -1,1 +1,20 @@
-<p>user works!</p>
+<div class="user-container">
+    <div *ngIf="user" class="m-b-md">
+        <figure *ngIf="user.photoURL" class="image is-64x64">
+            <img src={{user.photoURL}} alt="Image">
+        </figure>
+        <h1 class="is-size-5" *ngIf="user.displayName">{{user.displayName}}</h1>
+        <h1 class="is-size-6 has-text-grey-light" *ngIf="user.email">{{user.email}}</h1>
+    
+    </div>
+    
+    
+    <mat-divider></mat-divider>
+    
+    <div class="container is-fullhd m-t-md">
+        <div class="notification">
+            This container is <strong>fullwidth</strong> <em>until</em> the <code>$fullhd</code> breakpoint.
+        </div>
+    </div>
+
+</div>

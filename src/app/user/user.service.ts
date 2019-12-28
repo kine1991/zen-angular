@@ -23,6 +23,15 @@ export class UserService {
       })
     )
   }
+
+  getUserById(id){
+    // return this.afStore.collection('users').doc(id).valueChanges()
+    return this.afStore.collection('users').doc(id).get().pipe(
+      map(querySnapshot => {
+        return {id: querySnapshot.id, ...querySnapshot.data()}
+      })
+    )
+  }
 }
 
 // getArticles(){

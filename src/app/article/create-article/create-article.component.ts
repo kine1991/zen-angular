@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ArticleService } from '../article.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SeedService } from 'src/app/shared/seed.service';
-
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -12,9 +12,10 @@ import { SeedService } from 'src/app/shared/seed.service';
   templateUrl: './create-article.component.html',
   styleUrls: ['./create-article.component.scss']
 })
-export class CreateArticleComponent implements OnInit {
-  form: FormGroup
+export class CreateArticleComponent implements OnInit, OnDestroy {
+  form: FormGroup;
   userData;
+  authSub: Subscription;
   // user$;
 
   constructor(
@@ -26,7 +27,7 @@ export class CreateArticleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.user$.subscribe(userData => {
+    this.authSub = this.authService.user$.subscribe(userData => {
       // console.log('userData', userData)
       this.userData = userData
     })
@@ -35,6 +36,9 @@ export class CreateArticleComponent implements OnInit {
       title: new FormControl(''),
       body: new FormControl(''),
     });
+  }
+
+  ngOnDestroy(){
 
   }
 

@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ArticleService } from '../article.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import {MatDialog, /*MatDialogRef, MAT_DIALOG_DATA */} from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component'
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.scss']
 })
-export class ArticlesComponent implements OnInit {
+export class ArticlesComponent implements OnInit, OnDestroy {
 
   articles;
   panelOpenState = false;
-  search_field
+  search_field;
+  getArticlesSub: Subscription;
 
   constructor(
     private articleService: ArticleService,
@@ -23,20 +25,23 @@ export class ArticlesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.articleService.getArticles()
+    this.getArticlesSub = this.articleService.getArticles()
     .subscribe(data => {
-      // console.log('data', data)
-      this.articles = data
+      this.articles = data;
     })
 
     this.route.queryParamMap.pipe(
       switchMap(params => {
-        // console.log(params.get('search'))
         return this.articleService.getArticlesWithQuery(params.get('search'));
       })
     )
-    .subscribe(res => console.log('aaa', res))
+    .subscribe(res => {
+      // console.log('res', res)
+    })
+  }
 
+  ngOnDestroy(){
+    this.getArticlesSub.unsubscribe();
   }
 
   ChangeText(){
