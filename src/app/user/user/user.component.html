@@ -1,20 +1,28 @@
 <div class="user-container">
     <div *ngIf="user" class="m-b-md">
-        <figure *ngIf="user.photoURL" class="image is-64x64">
-            <img src={{user.photoURL}} alt="Image">
-        </figure>
+        <div class="stats">
+            <figure *ngIf="user.photoURL" class="image is-64x64 m-r-lg">
+                <img src={{user.photoURL}} alt="Image">
+            </figure>
+            <div *ngIf="size" class="stats-item-container has-text-weight-light">
+                <div class="stats-number">{{size}}</div>
+                <div class="stats-text">size</div>
+            </div>
+
+        </div>
         <h1 class="is-size-5" *ngIf="user.displayName">{{user.displayName}}</h1>
         <h1 class="is-size-6 has-text-grey-light" *ngIf="user.email">{{user.email}}</h1>
-    
     </div>
-    
     
     <mat-divider></mat-divider>
     
-    <div class="container is-fullhd m-t-md">
+    <div class="container is-fullhd m-t-md" *ngFor="let article of articles">
         <div class="notification">
-            This container is <strong>fullwidth</strong> <em>until</em> the <code>$fullhd</code> breakpoint.
+            <p class="date has-text-grey">{{article.date | date:"hh:mm  dd-MM-yyy"}}</p>
+            <strong>{{article.title}}</strong>
+            <p>{{article.body | transformHtml:200:true}}</p>
+            <a [routerLink]="['/articles', article.id]" class="is-link has-text-link open">Open</a>
         </div>
     </div>
-
 </div>
+

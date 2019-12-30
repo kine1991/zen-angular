@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
+  public user$ = new Subject()
   constructor(
     // private afAuth: AngularFireAuth,
     private afStore: AngularFirestore,
@@ -28,6 +29,7 @@ export class UserService {
     // return this.afStore.collection('users').doc(id).valueChanges()
     return this.afStore.collection('users').doc(id).get().pipe(
       map(querySnapshot => {
+        this.user$.next({id: querySnapshot.id, ...querySnapshot.data()})
         return {id: querySnapshot.id, ...querySnapshot.data()}
       })
     )

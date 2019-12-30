@@ -36,6 +36,21 @@ export class ArticleService {
     )
   }
 
+  getArticlesByUserId(id){
+    // return this.afStore.collection('articles').get().pipe(
+    return this.afStore.collection('articles', ref => ref.where('user.uid', '==', id)).get().pipe(
+      map(querySnapshot => {
+        const articles = []
+        querySnapshot.docs.forEach(doc => {
+          articles.push({id: doc.id, ...doc.data()})
+        })
+        return articles;
+      })
+    )
+    // db.collection("cities").where("capital", "==", true)
+    // console.log(id)
+  }
+
   getArticlesWithQuery(params){
     // console.log('params', params)
     return of(5)

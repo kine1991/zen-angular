@@ -3,22 +3,23 @@
         <span class="icon is-small"><i class="fas fa-arrow-left"></i></span> 
         <span>  Back </span>
     </button>
-
     <h1 class="title is-size-2" [style.textAlign]="'center'">{{article.title}}</h1>
     <div class="author-and-date is-size-7 m-b-sm">
-        <p class="author m-r-lg has-text-link"  >{{article.user.displayName}}</p>
+        <p class="author m-r-lg has-text-link" [routerLink]="['/users', article.user.uid]" >{{article.user.displayName}}</p>
         <p class="date has-text-grey">{{date | date:"hh:mm  dd-MM-yyy"}}</p>
     </div>
-    <p class="is-size-4" [innerHtml]="article.body"></p>
+    <p class="has-text-weight-light" [ngClass]="{'is-size-5': stateSize == 'less', 'is-size-4': stateSize == 'more'}"  [innerHtml]="article.body"></p>
+
+    <button (click)="toggleSize()" class="button-fix" mat-mini-fab color="primary">
+        <mat-icon *ngIf="stateSize == 'less'">add</mat-icon>
+        <mat-icon *ngIf="stateSize == 'more'">remove</mat-icon>
+    </button>
 </div>
 
 <ng-template #loading>
     <div class="loading-container">
         <mat-spinner [diameter]="30"></mat-spinner>
     </div>
-    <!-- <div class="loader-wrapper loading-container">
-        <div class="loader is-loading"></div>
-    </div> -->
 </ng-template>
 
 

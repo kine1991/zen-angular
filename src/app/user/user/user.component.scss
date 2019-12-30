@@ -2,3 +2,46 @@
     max-width: 860px;
     margin: auto auto;
 }
+
+.open{
+    cursor: pointer;
+    text-decoration: underline;
+    // padding: 0;
+    // margin: 0;
+    // color: hsl(204, 86%, 53%) !important;
+}
+
+.date{
+    text-align: right;
+    font-size: .7rem;
+}
+
+.stats{
+    display: flex;
+
+}
+
+.stats-item-container{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // border: cadetblue 1px solid;
+    // border-radius: 5px;
+}
+
+.stats-number{
+    flex: 3;
+    // background: chartreuse;
+    font-size: 1.7rem;
+    color: cadetblue;
+}
+.stats-text{
+    flex: 1;
+    font-size: 0.8rem;
+    color: darkgray;
+    font-weight: 200;
+    // background: chocolate;
+}

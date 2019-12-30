@@ -13,6 +13,7 @@
     <div id="navMenu" class="navbar-menu" #navMenu>
       <div class="navbar-end" *ngIf="!isFetching">
         <!-- <a class="navbar-item" [routerLink]="['/']" routerLinkActive="router-link-active"[routerLinkActiveOptions]="{ exact: true }">Home</a> -->
+        <a class="navbar-item" [routerLink]="['/users']"routerLinkActive="router-link-active">Users</a>
         <a class="navbar-item" [routerLink]="['/articles']"routerLinkActive="router-link-active">Articles</a>
         <a class="navbar-item" *ngIf="isAuth" [routerLink]="['/create-article']"routerLinkActive="router-link-active"><span class="icon"><i class="fas fa-plus"aria-hidden="true"></i></span></a>
         <a class="navbar-item" *ngIf="!isAuth" [routerLink]="['/sign-up']"routerLinkActive="router-link-active"><strong>Sign Up</strong></a>

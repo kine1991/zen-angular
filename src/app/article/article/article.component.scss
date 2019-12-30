@@ -1,6 +1,7 @@
 .article-container{
     max-width: 760px;
     margin: auto;
+    position: relative;
 }
 
 .author-and-date{
@@ -28,4 +29,20 @@
 
 .loading-container ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
     stroke: black;
+}
+
+
+
+.button{
+    &.is-rounded {
+        border-radius: 290486px
+    }
+
+}
+
+
+.button-fix{
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
 }

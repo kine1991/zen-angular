@@ -13,8 +13,9 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
   // encapsulation: ViewEncapsulation.None,
 })
 export class ArticleComponent implements OnInit, OnDestroy {
-  article
-  date = Date.now()
+  public stateSize = 'less'
+  public article
+  public date = Date.now()
 
   constructor(
     private articleService: ArticleService,
@@ -40,6 +41,14 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     // console.log('unsubscribe')
+  }
+
+  toggleSize(){
+    if(this.stateSize === 'less'){
+      this.stateSize = 'more'
+    } else{
+      this.stateSize = 'less'
+    }
   }
 
 }
