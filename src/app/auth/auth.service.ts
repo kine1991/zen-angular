@@ -35,6 +35,7 @@ export class AuthService {
 
   user$: Observable<User>;
   authChange$ = new Subject<boolean>();
+  private isAuthenticated = false;
 
   // userData$ = new Subject<any>();
   // userData
@@ -47,12 +48,20 @@ export class AuthService {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
+          // this.isAuthenticated = true;
+          // this.authChange$.next(true)
           return this.afStore.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
+          // this.isAuthenticated = false;
+          // this.authChange$.next(false)
           return of(null);
         }
       })
     )
+  }
+
+  getIsAuth() {
+    return this.isAuthenticated;
   }
 
   signIn(email: string, password: string){

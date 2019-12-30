@@ -20,7 +20,7 @@ import { DialogComponent } from './article/dialog/dialog.component';
 import { UserComponent } from './user/user/user.component';
 import { UsersComponent } from './user/users/users.component'
 
-@NgModule({
+@NgModule({ 
   declarations: [
     AppComponent,
     SignInComponent,
