@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { AuthService } from 'src/app/auth/auth.service';
-import { ArticleService } from '../article.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SeedService } from 'src/app/shared/seed.service';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 
+import { AuthService } from 'src/app/auth/auth.service';
+import { ArticleService } from '../article.service';
 
 @Component({
   selector: 'app-create-article',
@@ -21,16 +21,16 @@ export class CreateArticleComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private articleService: ArticleService,
-    private seedService: SeedService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private seedService: SeedService,
   ) { }
 
   ngOnInit() {
     this.authSub = this.authService.user$.subscribe(userData => {
       // console.log('userData', userData)
-      this.userData = userData
-    })
+      this.userData = userData;
+    });
 
     this.form = new FormGroup({
       title: new FormControl(''),
@@ -38,24 +38,24 @@ export class CreateArticleComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(){
-
+  ngOnDestroy() {
+    this.authSub.unsubscribe();
   }
 
-  createArticle(){
-    const {title, body} = this.form.value;
-    if(!this.userData.uid){
-      alert('You are not logged')
+  createArticle() {
+    const { title, body } = this.form.value;
+    if (!this.userData.uid) {
+      alert('You are not logged');
     }
     this.articleService.createArticle(title, body, this.userData)
-    .subscribe(articleData => {
-      this.form.reset();
-      this.router.navigate(['articles'])
-    })
+      .subscribe(articleData => {
+        this.form.reset();
+        this.router.navigate(['articles']);
+      });
   }
 
 
   createFakeData() {
-    this.seedService.createFakeData(5, 15) // параметры: максимальное рандомное количество пользователей и статей у каждого из них
+    this.seedService.createFakeData(5, 15); // параметры: максимальное рандомное количество пользователей и статей у каждого из них
   }
 }

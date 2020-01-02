@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TransformHtmlPipe implements PipeTransform {
   transform(value: string, limit, completeWords = false, ellipsis = '...') {
-    value = value.replace(/<\/?[^>]+>/ig, " "); // html tags to plain text
+    value = value.replace(/<\/?[^>]+>/ig, ' '); // html tags to plain text
     // if (completeWords) {
     //   value = value.substr(0, limit).lastIndexOf(' ');
     // }

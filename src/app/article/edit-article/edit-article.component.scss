@@ -1,4 +1,4 @@
-.create-article-container {
+.edit-article-container {
   max-width: 860px;
   display: flex;
   flex-direction: column;
@@ -11,20 +11,4 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-}
-
-// quill-editor{
-//     min-height: 300px;
-// }
-
-// .quill{
-//     min-height: 240px;
-// }
-
-.ql-container {
-  height: 300px;
-}
-
-:host #discipline-qe .ql-container {
-  height: 250px;
 }

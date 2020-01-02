@@ -21,7 +21,21 @@
             <p class="date has-text-grey">{{article.date | date:"hh:mm  dd-MM-yyy"}}</p>
             <strong>{{article.title}}</strong>
             <p>{{article.body | transformHtml:200:true}}</p>
-            <a [routerLink]="['/articles', article.id]" class="is-link has-text-link open">Open</a>
+            <div class="action">
+                <a [routerLink]="['/articles', article.id]" class="is-link has-text-link open">Open</a>
+                <div class="edit-delete-icon">
+                    <a *ngIf="user.uid === currentUid" (click)="edit(user.uid, article.id)" class="level-item m-r-md" aria-label="reply">
+                        <span class="icon is-small">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                    </a>
+                    <a *ngIf="user.uid === currentUid" (click)="delete(user.uid, article.id)" class="level-item" aria-label="retweet">
+                        <span class="icon is-small">
+                            <i class="fas fa-trash-alt"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

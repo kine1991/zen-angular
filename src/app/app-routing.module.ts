@@ -10,6 +10,7 @@ import { UsersComponent } from './user/users/users.component';
 import { UserComponent } from './user/user/user.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { UnauthGuard } from './shared/guards/unauth.guard';
+import { EditArticleComponent } from './article/edit-article/edit-article.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -18,6 +19,8 @@ const routes: Routes = [
   {path: 'create-article', component: CreateArticleComponent, canActivate: [AuthGuard]},
   {path: 'articles', component: ArticlesComponent},
   {path: 'articles/:articleId', component: ArticleComponent},
+  // {path: 'articles/:articleId/edit', component: EditArticleComponent},
+  {path: 'articles/:articleId/edit', component: EditArticleComponent, canActivate: [AuthGuard]},
   {path: 'users', component: UsersComponent},
   {path: 'users/:userId', component: UserComponent},
 ];

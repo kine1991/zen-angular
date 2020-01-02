@@ -7,12 +7,10 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  user$
-  userData
+  public user$;
+  public userData;
 
-  constructor(
-    private authService: AuthService
-  ) { }
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.user$ = this.authService.user$;
@@ -22,10 +20,7 @@ export class HomeComponent implements OnInit {
     // })
   }
 
-
-
   // logOut(){
   //   this.authService.logOut()
   // }
-
 }

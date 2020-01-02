@@ -7,24 +7,18 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
   // user$
 
-  constructor(
-    private authService: AuthService
-  ){}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(){
+  ngOnInit() {
     // console.log('App')
     // this.authService.autoLogin().subscribe( res => {
     //   console.log('App', res)
     // })
-    
     // this.authService.userData$.subscribe(userData => {
     //   console.log('userData', userData)
     //   // this.userData = userData;
     // })
   }
-
-
 }

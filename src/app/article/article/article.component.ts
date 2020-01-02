@@ -2,8 +2,7 @@ import { Component, OnInit, OnDestroy, ViewEncapsulation, Inject } from '@angula
 import { ArticleService } from '../article.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { switchMap, tap } from 'rxjs/operators';
-
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 // import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,9 +12,9 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
   // encapsulation: ViewEncapsulation.None,
 })
 export class ArticleComponent implements OnInit, OnDestroy {
-  public stateSize = 'less'
-  public article
-  public date = Date.now()
+  public stateSize = 'less';
+  public article;
+  public date = Date.now();
 
   constructor(
     private articleService: ArticleService,
@@ -30,24 +29,24 @@ export class ArticleComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.paramMap.pipe(
       switchMap((params: Params) => {
-        return this.articleService.getArticle(params.params.articleId)
+        return this.articleService.getArticle(params.params.articleId);
       })
     )
     .subscribe((data) => {
       // console.log(data)
-      this.article = data
-    })
+      this.article = data;
+    });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     // console.log('unsubscribe')
   }
 
-  toggleSize(){
-    if(this.stateSize === 'less'){
-      this.stateSize = 'more'
-    } else{
-      this.stateSize = 'less'
+  toggleSize() {
+    if (this.stateSize === 'less') {
+      this.stateSize = 'more';
+    } else {
+      this.stateSize = 'less';
     }
   }
 

@@ -18,9 +18,10 @@ import { TransformHtmlPipe } from './article/pipes/transform-html.pipe';
 import { ArticleComponent } from './article/article/article.component';
 import { DialogComponent } from './article/dialog/dialog.component';
 import { UserComponent } from './user/user/user.component';
-import { UsersComponent } from './user/users/users.component'
+import { UsersComponent } from './user/users/users.component';
+import { EditArticleComponent } from './article/edit-article/edit-article.component';
 
-@NgModule({ 
+@NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
@@ -34,7 +35,8 @@ import { UsersComponent } from './user/users/users.component'
     ArticleComponent,
     DialogComponent,
     UserComponent,
-    UsersComponent
+    UsersComponent,
+    EditArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -47,4 +49,4 @@ import { UsersComponent } from './user/users/users.component'
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent]
 })
-export class AppModule { }
+export class AppModule {}

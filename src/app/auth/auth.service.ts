@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core";
-import { switchMap } from "rxjs/operators";
-import { AngularFireAuth } from "@angular/fire/auth";
+import { Injectable } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/auth';
 import {
   AngularFirestore,
   AngularFirestoreDocument
-} from "@angular/fire/firestore";
-import { auth } from "firebase/app";
-import { Observable, from, of, Subject } from "rxjs";
-import { User } from "./user.model";
+} from '@angular/fire/firestore';
+import { auth } from 'firebase/app';
+import { Observable, from, of, Subject } from 'rxjs';
+import { User } from './user.model';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class AuthService {
   user$: Observable<User>;
@@ -20,8 +20,7 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afStore: AngularFirestore
-  )
-  {
+  ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -47,9 +46,10 @@ export class AuthService {
     ).pipe(
       switchMap(user => {
         user.user.updateProfile({ displayName: name }); // устанавилваем имя
+        // tslint:disable-next-line:no-shadowed-variable
         const { uid, email } = user.user;
         return this.afStore
-          .collection<User>("users")
+          .collection<User>('users')
           .doc(user.user.uid)
           .set({ name, email, uid });
       })
@@ -61,7 +61,7 @@ export class AuthService {
   }
 
   async signInWithGoogle() {
-    console.log("signInWithGoogle2");
+    console.log('signInWithGoogle2');
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
     return this.updateUserData(credential.user);

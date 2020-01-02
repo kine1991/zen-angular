@@ -1,10 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ArticleService } from '../article.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import {MatDialog, /*MatDialogRef, MAT_DIALOG_DATA */} from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component'
-import {Subscription} from 'rxjs';
+import {
+  MatDialog /*MatDialogRef, MAT_DIALOG_DATA */
+} from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-articles',
@@ -12,56 +15,85 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
-
-  articles;
-  panelOpenState = false;
-  search_field;
-  getArticlesSub: Subscription;
+  public articles;
+  public currentUid;
+  public panelOpenState = false;
+  public searchField;
+  public getArticlesSub: Subscription;
 
   constructor(
     private articleService: ArticleService,
+    private authService: AuthService,
     private route: ActivatedRoute,
+    private router: Router,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.getArticlesSub = this.articleService.getArticles()
-    .subscribe(data => {
+    this.getArticlesSub = this.articleService.getArticles().subscribe(data => {
       this.articles = data;
-    })
+    });
 
-    this.route.queryParamMap.pipe(
-      switchMap(params => {
-        return this.articleService.getArticlesWithQuery(params.get('search'));
-      })
-    )
-    .subscribe(res => {
-      // console.log('res', res)
-    })
+    this.authService.user$.subscribe(userData => {
+      this.currentUid = userData.uid;
+    });
+
+    this.route.queryParamMap
+      .pipe(
+        switchMap(params => {
+          return this.articleService.getArticlesWithQuery(params.get('search'));
+        })
+      )
+      .subscribe(res => {
+        // console.log('res', res)
+      });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.getArticlesSub.unsubscribe();
   }
 
-  ChangeText(){
+  ChangeText() {
     // console.log('ChangeText()')
   }
 
-  search(){
-    // console.log('search', this.search_field)
+  search() {
+    // console.log('search', this.searchField)
   }
 
+  delete(uidEl, idEl) {
+    if (this.currentUid === uidEl) {
+      const isDelete = confirm('you are sure?');
+      if (isDelete) {
+        this.articleService
+          .deleteArticle(idEl)
+          .then(() => {
+            this.articles = this.articles.filter(item => item.id !== idEl);
+          })
+          .catch(error => {
+            console.error('Error removing document: ', error);
+          });
+      }
+    }
+  }
 
-  openDialog(){
-    let dialogRef = this.dialog.open(DialogComponent, {data: {name: 'Nikolay'}});
+  edit(uidEl, idEl) {
+    console.log(uidEl, idEl);
+    if (this.currentUid === uidEl) {
+      this.router.navigate(['articles', idEl, 'edit']);
+    }
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: { name: 'Nikolay' }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`res: ${result}`)
-    })
+      console.log(`res: ${result}`);
+    });
   }
 }
-
 
 // DialogComponent
 // @Component({
@@ -73,18 +105,17 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 
 // import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
+// openDialog(): void {
+//   const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+//     width: '250px',
+//     // data: {name: this.name, animal: this.animal}
+//   });
 
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-  //     width: '250px',
-  //     // data: {name: this.name, animal: this.animal}
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     // this.animal = result;
-  //   });
-  // }
+//   dialogRef.afterClosed().subscribe(result => {
+//     console.log('The dialog was closed');
+//     // this.animal = result;
+//   });
+// }
 
 // @Component({
 //   selector: 'dialog-overview-example-dialog',

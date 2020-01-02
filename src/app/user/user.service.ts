@@ -7,32 +7,39 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  public user$ = new Subject()
+  public user$ = new Subject();
   constructor(
     // private afAuth: AngularFireAuth,
-    private afStore: AngularFirestore,
-  ) { }
+    private afStore: AngularFirestore
+  ) {}
 
-  getAllUsers(){
-    return this.afStore.collection('users').get().pipe(
-      map(querySnapshot => {
-        const users = [];
-        querySnapshot.docs.forEach(doc => {
-          users.push({id: doc.id, ...doc.data()})
+  getAllUsers() {
+    return this.afStore
+      .collection('users')
+      .get()
+      .pipe(
+        map(querySnapshot => {
+          const users = [];
+          querySnapshot.docs.forEach(doc => {
+            users.push({ id: doc.id, ...doc.data() });
+          });
+          return users;
         })
-        return users;
-      })
-    )
+      );
   }
 
-  getUserById(id){
+  getUserById(id) {
     // return this.afStore.collection('users').doc(id).valueChanges()
-    return this.afStore.collection('users').doc(id).get().pipe(
-      map(querySnapshot => {
-        this.user$.next({id: querySnapshot.id, ...querySnapshot.data()})
-        return {id: querySnapshot.id, ...querySnapshot.data()}
-      })
-    )
+    return this.afStore
+      .collection('users')
+      .doc(id)
+      .get()
+      .pipe(
+        map(querySnapshot => {
+          this.user$.next({ id: querySnapshot.id, ...querySnapshot.data() });
+          return { id: querySnapshot.id, ...querySnapshot.data() };
+        })
+      );
   }
 }
 
@@ -47,4 +54,3 @@ export class UserService {
 //     })
 //   )
 // }
-

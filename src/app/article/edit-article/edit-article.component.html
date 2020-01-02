@@ -1,0 +1,21 @@
+<mat-card class="edit-article-container">
+    <h1>Update Article</h1>
+    <form [formGroup]="form" (ngSubmit)="updateArticle()" class="form-container">
+        <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+                <input class="input" type="text" formControlName="title" placeholder="Title input">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Body</label>
+            <div class="control">
+                <textarea class="textarea" formControlName="body" placeholder="Textarea"></textarea>
+            </div>
+        </div>
+        <button type="submit" class="button is-info m-b-md">Update</button>
+    </form>
+</mat-card>
+
+<!-- http://localhost:4200/articles/ubGiZObiewWfbF9m2tkE/edit -->
+<!-- {{userData | json}} -->

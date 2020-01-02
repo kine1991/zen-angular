@@ -1,16 +1,16 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { AuthService } from "src/app/auth/auth.service";
-import { Router } from "@angular/router";
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-header",
-  templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"]
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   // @ViewChild('navMenu') navMenu:
-  @ViewChild("navMenu", { static: false }) navMenu: ElementRef;
-  @ViewChild("navBurger", { static: false }) navBurger: ElementRef;
+  @ViewChild('navMenu', { static: false }) navMenu: ElementRef;
+  @ViewChild('navBurger', { static: false }) navBurger: ElementRef;
 
   isAuth;
   isFetching = false;
@@ -38,13 +38,13 @@ export class HeaderComponent implements OnInit {
 
   logOut() {
     this.authService.logOut().then(() => {
-      this.router.navigate(["/sign-in"]);
+      this.router.navigate(['/sign-in']);
     });
   }
 
   toggleNavbar() {
-    this.navBurger.nativeElement.classList.toggle("is-active");
-    this.navMenu.nativeElement.classList.toggle("is-active");
+    this.navBurger.nativeElement.classList.toggle('is-active');
+    this.navMenu.nativeElement.classList.toggle('is-active');
   }
 }
 
