@@ -4,11 +4,22 @@
         <span>  Back </span>
     </button>
     <h1 class="title is-size-2" [style.textAlign]="'center'">{{article.title}}</h1>
+    <div class="social-media-and-tags">
+        <div class="social-media m-b-md">
+            <span class="social-media__item m-r-lg" *ngIf="article.views"> <i class="fas fa-eye"></i><span class="social-media__text m-l-xs">{{article.views}}</span></span>
+            <span class="social-media__item m-r-lg" *ngIf="article.comments"> <i class="fas fa-comment"></i><span class="social-media__text m-l-xs">0</span></span>
+            <span class="social-media__item m-r-lg" *ngIf="article.ratings"> <i class="fas fa-star"></i><span class="social-media__text m-l-xs">{{article.ratings}}</span></span>
+            <span class="social-media__item m-r-lg" *ngIf="article.ratings"> <i class="fas fa-angle-double-up"></i><span class="social-media__text m-l-xs">{{article.ratings}}</span></span>
+        </div>
+        <div class="m-b-md">
+            <span class="tag is-light m-r-sm"  *ngFor="let tag of article.tags">{{tag}}</span>
+        </div>
+    </div>
     <div class="author-and-date is-size-7 m-b-sm">
         <p class="author m-r-lg has-text-link" [routerLink]="['/users', article.user.uid]" >{{article.user.displayName}}</p>
         <p class="date has-text-grey">{{date | date:"hh:mm  dd-MM-yyy"}}</p>
     </div>
-    <p class="has-text-weight-light" [ngClass]="{'is-size-5': stateSize == 'less', 'is-size-4': stateSize == 'more'}"  [innerHtml]="article.body"></p>
+    <p class="has-text-weight-light body" [ngClass]="{'is-size-5': stateSize == 'less', 'is-size-4': stateSize == 'more'}"  [innerHtml]="article.body"></p>
 
     <button (click)="toggleSize()" class="button-fix" mat-mini-fab color="primary">
         <mat-icon *ngIf="stateSize == 'less'">add</mat-icon>

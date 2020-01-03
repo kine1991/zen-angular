@@ -15,6 +15,7 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
+  sortSelected;
   public articles;
   public currentUid;
   public panelOpenState = false;
@@ -31,6 +32,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getArticlesSub = this.articleService.getArticles().subscribe(data => {
+      console.log('data', data);
       this.articles = data;
     });
 
@@ -47,6 +49,10 @@ export class ArticlesComponent implements OnInit, OnDestroy {
       .subscribe(res => {
         // console.log('res', res)
       });
+  }
+
+  onChangeSortSelected(value) {
+    this.sortSelected = value;
   }
 
   ngOnDestroy() {

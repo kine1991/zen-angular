@@ -31,18 +31,37 @@
     stroke: black;
 }
 
-
-
 .button{
     &.is-rounded {
         border-radius: 290486px
     }
-
 }
-
 
 .button-fix{
     position: fixed;
     bottom: 2rem;
     right: 2rem;
+}
+
+.social-media{
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+
+    &__text {
+        font-size: 10px;
+    }
+
+    &__item{
+        color: hsl(0, 0%, 48%);
+    }
+}
+
+.body {
+    text-align: justify;
+}
+
+.social-media-and-tags{
+    display: flex;
+    justify-content: space-between;
 }

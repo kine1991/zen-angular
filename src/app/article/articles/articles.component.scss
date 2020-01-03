@@ -2,6 +2,10 @@
     max-width: 860px;
     margin: auto auto;
 }
+.articles-container2{
+    max-width: 960px;
+    margin: auto auto;
+}
 
 .article{
     // border: 1px solid black;
@@ -31,4 +35,23 @@
 .author {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.social-media{
+    display: flex;
+    align-items: baseline;
+
+    &__text {
+        font-size: 10px;
+
+    }
+
+    &__item{
+        color: hsl(0, 0%, 48%);
+    }
+}
+
+.social-media-and-tags{
+    display: flex;
+    justify-content: space-between;
 }
