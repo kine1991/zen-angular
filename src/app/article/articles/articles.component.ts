@@ -21,6 +21,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
   public panelOpenState = false;
   public searchField;
   public getArticlesSub: Subscription;
+  public onChangeFilterSub: Subscription;
 
   constructor(
     private articleService: ArticleService,
@@ -34,6 +35,11 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     this.getArticlesSub = this.articleService.getArticles().subscribe(data => {
       console.log('data', data);
       this.articles = data;
+    });
+
+    this.onChangeFilterSub = this.articleService.onChangeFilter$.subscribe(res => {
+      console.log('res2');
+      console.log(res);
     });
 
     this.authService.user$.subscribe(userData => {
@@ -57,6 +63,7 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.getArticlesSub.unsubscribe();
+    this.onChangeFilterSub.unsubscribe();
   }
 
   ChangeText() {

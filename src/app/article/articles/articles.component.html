@@ -1,25 +1,9 @@
 <!-- <button (click)="openDialog()">Open dialog</button> -->
 
 <div class="articles-container" *ngIf="articles; else loading">
-    <div class="box">
-        <p class="title">Filtering <i class="fas fa-filter"></i></p>
-        <!-- <i class="fas fa-filter"></i> -->
-        <!-- <i class="fas fa-sort"></i>
-        <i class="fas fa-sort-amount-up"></i>
-        <i class="fas fa-sort-amount-down-alt"></i> -->
+    <app-filter-articles></app-filter-articles>
 
-          <div class="select">
-            <select (change)="onChangeSortSelected($event.target.value)">
-              <option>None</option>
-              <option value="byIncreaseRating">Select by Increase rating</option>
-              <option value="byDecreaseRating">Select by Decrease rating</option>
-              <option value="byIncreaseViews">Select by Increase views</option>
-              <option value="byDecreaseViews">Select by Decrease views</option>
-            </select>
-          </div>
-    </div>
-
-    <div class="box" *ngFor="let article of articles">
+    <div class="box m-t-lg" *ngFor="let article of articles">
         <article class="media">
             <div class="media-left" *ngIf="article.user.photoURL">
                 <figure class="image is-64x64"><img src={{article.user.photoURL}} alt="Image"></figure>
@@ -28,7 +12,8 @@
                 <div class="content">
                     <div>
                         <small class="author m-r-sm has-text-link" [routerLink]="['/users', article.user.uid]" routerLinkActive="router-link-active" >{{article.user.displayName}} </small> <small class="date has-text-grey">{{article.date | date:"hh:mm  dd-MM-yyy"}}</small><br>
-                        <strong>{{article.title}} </strong>
+                        <strong>{{article.title}} </strong><br>
+                        <span class="has-text-grey">{{article.topic}}</span>
                         <p>{{article.body | transformHtml:500:true}}</p>
                     </div>
                 </div>

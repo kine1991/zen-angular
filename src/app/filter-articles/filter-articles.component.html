@@ -1,0 +1,42 @@
+<div class="box">
+    <p class="title">Filtering <i class="fas fa-filter"></i></p>
+    <div class="filter-container">
+        <div class="m-r-md">
+            <label class="label">Sort By</label>
+            <div class="select">
+              <select [(ngModel)]="selectedFilterObj.sortBy" (change)="onChangeSortSelected($event.target.value)">
+                <!-- <option>None</option> -->
+                <!-- <option *ngFor="let item of sortByOprions" [value]="item">{{item}}</option> -->
+                <option [value]="null">None</option>
+                <option value="byIncreaseRating">Select by Increase rating</option>
+                <option value="byDecreaseRating">Select by Decrease rating</option>
+                <option value="byIncreaseViews">Select by Increase views</option>
+                <option value="byDecreaseViews">Select by Decrease views</option>
+              </select>
+            </div>
+        </div>
+        <div class="m-r-md" *ngIf="filterObj">
+            <label class="label">Select Topic</label>
+            <div class="select">
+              <select [(ngModel)]="selectedFilterObj.topic" (change)="onChangeTopicSelected($event.target.value)">
+                  <option [value]="null">None</option>
+                  <option *ngFor="let item of filterObj.allTopics" [value]="item">{{item}}</option>
+              </select>
+            </div>
+        </div>
+        <div class="m-r-md" *ngIf="filterObj">
+            <label class="label">Select Tag</label>
+            <div class="select">
+              <select [(ngModel)]="selectedFilterObj.tag" (change)="onChangeTagSelected($event.target.value)">
+                  <option [value]="null">None</option>
+                  <option *ngFor="let item of filterObj.allTags" [value]="item">{{item}}</option>
+              </select>
+            </div>
+        </div>
+    </div>
+    <div class="filter-container m-t-md">
+        <button class="button m-r-md" (click)="resetFilter()">Reset</button>
+        <button class="button m-r-md is-primary" (click)="applyFilter()">Apply</button>
+
+    </div>
+</div>

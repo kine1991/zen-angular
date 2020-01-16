@@ -20,6 +20,7 @@ import { DialogComponent } from './article/dialog/dialog.component';
 import { UserComponent } from './user/user/user.component';
 import { UsersComponent } from './user/users/users.component';
 import { EditArticleComponent } from './article/edit-article/edit-article.component';
+import { FilterArticlesComponent } from './filter-articles/filter-articles.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { EditArticleComponent } from './article/edit-article/edit-article.compon
     DialogComponent,
     UserComponent,
     UsersComponent,
-    EditArticleComponent
+    EditArticleComponent,
+    FilterArticlesComponent
   ],
   imports: [
     BrowserModule,
