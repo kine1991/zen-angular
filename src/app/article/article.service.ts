@@ -32,8 +32,46 @@ export class ArticleService {
     return this.afStore.collection('articles').doc(id).update({title, body});
   }
 
-  getArticles() {
-    return this.afStore
+  // getArticlesByFiltering(filter) {
+
+  // }
+
+  getArticles(filter?) {
+    // console.log('@', filter);
+    if (filter && !filter.byDefault) {
+      // console.log('filter', filter);
+
+      // afs.collection('items', ref => {
+      //   let query : firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+        // if (size) { query = query.where('size', '==', size) };
+        // if (color) { query = query.where('color', '==', color) };
+        // return query;
+      // })
+
+      return this.afStore.collection('articles', ref => {
+        let query: firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+        if (filter.topic) {
+          query = query.where('topic', '==', filter.topic);
+        }
+        if (filter.tag) {
+          query = query.where('tag', '==', filter.tag);
+        }
+        return query;
+        // ref.where('topic', '==', filter.topic)
+      })
+      // return this.afStore.collection('articles', ref => ref.where('topic', '==', filter.topic))
+      .get()
+      .pipe(
+        map(querySnapshot => {
+          const articles = [];
+          querySnapshot.docs.forEach(doc => {
+            articles.push({ id: doc.id, ...doc.data() });
+          });
+          return articles;
+        })
+      );
+    } else {
+      return this.afStore
       .collection('articles')
       .get()
       .pipe(
@@ -45,6 +83,7 @@ export class ArticleService {
           return articles;
         })
       );
+    }
   }
 
   getArticlesByUserId(id: number) {

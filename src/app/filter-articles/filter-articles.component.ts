@@ -12,7 +12,8 @@ export class FilterArticlesComponent implements OnInit {
   public selectedFilterObj = {
     tag: null,
     topic: null,
-    sortBy: null
+    sortBy: null,
+    byDefault: true
   };
 
   constructor(
@@ -29,7 +30,8 @@ export class FilterArticlesComponent implements OnInit {
     this.selectedFilterObj = {
       tag: null,
       topic: null,
-      sortBy: null
+      sortBy: null,
+      byDefault: true
     };
     this.articleService.onChangeFilter$.next(this.selectedFilterObj);
     // console.log('filterObj', this.filterObj);
@@ -37,16 +39,19 @@ export class FilterArticlesComponent implements OnInit {
 
   onChangeTopicSelected(value) {
     this.selectedFilterObj.topic = value;
+    this.selectedFilterObj.byDefault = false;
     this.articleService.onChangeFilter$.next(this.selectedFilterObj);
   }
 
   onChangeTagSelected(value) {
     this.selectedFilterObj.tag = value;
+    this.selectedFilterObj.byDefault = false;
     this.articleService.onChangeFilter$.next(this.selectedFilterObj);
   }
 
   onChangeSortSelected(value) {
     this.selectedFilterObj.sortBy = value;
+    this.selectedFilterObj.byDefault = false;
     this.articleService.onChangeFilter$.next(this.selectedFilterObj);
   }
 }

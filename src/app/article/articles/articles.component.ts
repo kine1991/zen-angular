@@ -15,7 +15,6 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
-  sortSelected;
   public articles;
   public currentUid;
   public panelOpenState = false;
@@ -33,32 +32,33 @@ export class ArticlesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getArticlesSub = this.articleService.getArticles().subscribe(data => {
-      console.log('data', data);
+      // console.log('data', data);
       this.articles = data;
     });
 
-    this.onChangeFilterSub = this.articleService.onChangeFilter$.subscribe(res => {
-      console.log('res2');
-      console.log(res);
+    this.onChangeFilterSub = this.articleService.onChangeFilter$.subscribe(filter => {
+      console.log('filter2');
+      console.log(filter);
+      this.articleService.getArticles(filter)
+      .subscribe(data => {
+        // this.articles = data;
+        this.articles = data;
+      });
     });
 
     this.authService.user$.subscribe(userData => {
       this.currentUid = userData.uid;
     });
 
-    this.route.queryParamMap
-      .pipe(
-        switchMap(params => {
-          return this.articleService.getArticlesWithQuery(params.get('search'));
-        })
-      )
-      .subscribe(res => {
-        // console.log('res', res)
-      });
-  }
-
-  onChangeSortSelected(value) {
-    this.sortSelected = value;
+    // this.route.queryParamMap
+    //   .pipe(
+    //     switchMap(params => {
+    //       return this.articleService.getArticlesWithQuery(params.get('search'));
+    //     })
+    //   )
+    //   .subscribe(res => {
+    //     // console.log('res', res)
+    //   });
   }
 
   ngOnDestroy() {
@@ -66,13 +66,13 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     this.onChangeFilterSub.unsubscribe();
   }
 
-  ChangeText() {
-    // console.log('ChangeText()')
-  }
+  // ChangeText() {
+  //   // console.log('ChangeText()')
+  // }
 
-  search() {
-    // console.log('search', this.searchField)
-  }
+  // search() {
+  //   // console.log('search', this.searchField)
+  // }
 
   delete(uidEl, idEl) {
     if (this.currentUid === uidEl) {
