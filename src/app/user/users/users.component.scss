@@ -1,0 +1,10 @@
+.loading-container{
+  height: calc(100vh - 64px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-container ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: black;
+}

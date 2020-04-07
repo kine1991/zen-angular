@@ -28,6 +28,38 @@ export class ArticleEffects {
   );
 
   @Effect()
+  fetchArticlesByUserId = this.actions$.pipe(
+    ofType(ArticleActions.FETCH_ARTICLES_BY_USER_ID_START),
+    switchMap((fetchArticlesByUserId: ArticleActions.FetchArticleByUserIdStart) => {
+      return  this.afStore.collection('articles', ref => ref.where('user.uid', '==', fetchArticlesByUserId.id)).get().pipe(
+        map(querySnapshot => {
+          const articles = [];
+          querySnapshot.docs.forEach(doc => {
+            articles.push({ id: doc.id, ...doc.data() });
+          });
+          return articles;
+        }),
+        map(articles => {
+          return new ArticleActions.FetchArticlesSuccess(articles);
+        })
+      );
+    })
+  );
+
+  // return this.afStore
+  // .collection('articles', ref => ref.where('user.uid', '==', id))
+  // .get()
+  // .pipe(
+  //   map(querySnapshot => {
+  //     const articles = [];
+  //     querySnapshot.docs.forEach(doc => {
+  //       articles.push({ id: doc.id, ...doc.data() });
+  //     });
+  //     return articles;
+  //   })
+  // );
+
+  @Effect()
   fetchArticle = this.actions$.pipe(
     ofType(ArticleActions.FETCH_ARTICLE_START),
     switchMap((fetchArticleStart: ArticleActions.FetchArticleStart) => {
@@ -39,7 +71,7 @@ export class ArticleEffects {
             return { id: doc.id, ...doc.data() };
           }),
           map((article: ArticleResponseData) => {
-            console.log('article2', article);
+            // console.log('article2', article);
             return new ArticleActions.FetchArticleSuccess(article);
           })
         );

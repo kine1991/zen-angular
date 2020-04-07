@@ -1,23 +1,31 @@
-<div *ngFor="let user of users">
-
-    <div class="box m-b-md" >
-        <article class="media">
-          <div class="media-left">
-            <figure class="image is-64x64">
-              <img src={{user.photoURL}} alt="Image">
-            </figure>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong class="m-r-md" >{{user.displayName}}</strong> <small>{{user.email}}</small>
-                <br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
-                <br>
-                <a [routerLink]="['/users', user.uid]" >See More</a>
-              </p>
+<ng-container *ngIf="!loading; else loadingRef">
+  <div *ngFor="let user of users">
+      <div class="box m-b-md" >
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-64x64">
+                <img src={{user.photoURL}} alt="Image">
+              </figure>
             </div>
-          </div>
-        </article>
-      </div>
-</div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong class="m-r-md" >{{user.displayName}}</strong> <small>{{user.email}}</small>
+                  <br>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+                  <br>
+                  <a [routerLink]="['/users', user.uid]" >See More</a>
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+  </div>
+
+</ng-container>
+
+<ng-template #loadingRef>
+  <div class="loading-container">
+      <mat-spinner [diameter]="30"></mat-spinner>
+  </div>
+</ng-template>

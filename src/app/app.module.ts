@@ -28,6 +28,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { ArticleEffects } from './article/store/article.effects';
+import { UserEffects } from './user/store/user.effects';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -55,7 +56,7 @@ import { environment } from 'src/environments/environment';
     SharedModule,
     AngularMaterialModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([ArticleEffects]),
+    EffectsModule.forRoot([ArticleEffects, UserEffects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production })
   ],
   providers: [],

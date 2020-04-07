@@ -1,15 +1,14 @@
 import { ActionReducerMap } from '@ngrx/store';
 
 import * as fromArticle from '../article/store/article.reducer';
+import * as fromUser from '../user/store/user.reducer';
 
 export interface AppState {
-  article: any;
+  article: fromArticle.State;
+  user: fromUser.State;
 }
 
-const initialState = {
-  article: null,
-};
-
 export const appReducer: ActionReducerMap<AppState> = {
-  article: fromArticle.appReducer
+  user: fromUser.userReducer,
+  article: fromArticle.articleReducer,
 };
