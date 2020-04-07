@@ -1,6 +1,5 @@
 <!-- <button (click)="openDialog()">Open dialog</button> -->
-
-<div class="articles-container" *ngIf="articles; else loading">
+<div class="articles-container" *ngIf="!loading; else loadingRef">
     <app-filter-articles></app-filter-articles>
 
     <div class="box m-t-lg" *ngFor="let article of articles">
@@ -57,7 +56,7 @@
 </div>
 
 
-<ng-template #loading>
+<ng-template #loadingRef>
     <div class="loading-container">
         <mat-spinner [diameter]="30"></mat-spinner>
     </div>

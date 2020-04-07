@@ -37,6 +37,10 @@ export class FilterArticlesComponent implements OnInit {
     // console.log('filterObj', this.filterObj);
   }
 
+  applyFilter() {
+    console.log();
+  }
+
   onChangeTopicSelected(value) {
     this.selectedFilterObj.topic = value;
     this.selectedFilterObj.byDefault = false;

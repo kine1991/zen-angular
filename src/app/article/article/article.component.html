@@ -1,4 +1,4 @@
-<div class="article-container" *ngIf="article; else loading">
+<div class="article-container" *ngIf="!loading; else loadingRef">
     <button class="button is-light" [routerLink]="['/articles']">
         <span class="icon is-small"><i class="fas fa-arrow-left"></i></span> 
         <span>  Back </span>
@@ -28,7 +28,7 @@
     </button>
 </div>
 
-<ng-template #loading>
+<ng-template #loadingRef>
     <div class="loading-container">
         <mat-spinner [diameter]="30"></mat-spinner>
     </div>

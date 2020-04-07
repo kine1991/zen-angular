@@ -21,6 +21,14 @@ import { UserComponent } from './user/user/user.component';
 import { UsersComponent } from './user/users/users.component';
 import { EditArticleComponent } from './article/edit-article/edit-article.component';
 import { FilterArticlesComponent } from './filter-articles/filter-articles.component';
+import { StoreModule } from '@ngrx/store';
+
+import * as fromApp from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { ArticleEffects } from './article/store/article.effects';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -45,7 +53,10 @@ import { FilterArticlesComponent } from './filter-articles/filter-articles.compo
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    StoreModule.forRoot(fromApp.appReducer),
+    EffectsModule.forRoot([ArticleEffects]),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],

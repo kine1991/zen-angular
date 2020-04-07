@@ -8,6 +8,9 @@ import {
 import { DialogComponent } from '../dialog/dialog.component';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
+import * as ArticleActions from '../store/article.actions';
 
 @Component({
   selector: 'app-articles',
@@ -16,6 +19,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
   public articles;
+  public loading = true;
   public currentUid;
   public panelOpenState = false;
   public searchField;
@@ -27,13 +31,23 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit() {
-    this.getArticlesSub = this.articleService.getArticles().subscribe(data => {
-      // console.log('data', data);
-      this.articles = data;
+    this.store.dispatch(
+      new ArticleActions.FetchArticlesStart()
+    );
+    // this.getArticlesSub = this.articleService.getArticles().subscribe(data => {
+    //   // console.log('data', data);
+    //   this.articles = data;
+    // });
+
+    this.getArticlesSub = this.store.select('article').subscribe(article => {
+      // console.log('articles', article);
+      this.loading = article.loading;
+      this.articles = article.articles;
     });
 
     this.onChangeFilterSub = this.articleService.onChangeFilter$.subscribe(filter => {
